@@ -1,0 +1,88 @@
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[DebugChecksum]
+Checksum=1060790008
+[DisAssemblyWindow]
+NumStates=_ 1
+State 1=_ 1
+[InstructionProfiling]
+Enabled=_ 0
+[CodeCoverage]
+Enabled=_ 0
+[Profiling]
+Enabled=0
+[StackPlugin]
+Enabled=1
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnHow=0
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[Stack]
+FillEnabled=0
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnLogOnly=1
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[Breakpoints]
+Bp0=_ "STD_CODE" "{D:\01.Projects\JKElectronics\STM32\sw\stm32_core\src\main.c}.252.2@1" 1 0 0 0 "" 0 ""
+Count=1
+[TraceHelper]
+Enabled=0
+ShowSource=1
+[Exceptions]
+StopOnUncaught=_ 0
+StopOnThrow=_ 0
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[RecentFlashDownload]
+Path=D:\Mylife\GSR\ST\src\STM32F103RB_GSR\prj\EWARMv6\Debug\Exe\stm32_core.out
+[struct_types]
+Fmt0=GPIO_TypeDef-BRR	4	0
+Fmt1=GPIO_TypeDef-BSRR	4	0
+Fmt2=GPIO_TypeDef-CRH	4	0
+Fmt3=GPIO_TypeDef-CRL	4	0
+Fmt4=GPIO_TypeDef-IDR	4	0
+Fmt5=GPIO_TypeDef-LCKR	4	0
+Fmt6=GPIO_TypeDef-ODR	4	0
+[watch_formats]
+Fmt0={W}0:GPIO_Pin	4	0
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[CallStackLog]
+Enabled=0
+[DriverProfiling]
+Enabled=0
+Mode=0
+Graph=0
+Symbiont=0
+Exclusions=
+[Disassemble mode]
+mode=0
+[Breakpoints2]
+Bp0=_ 1 "EMUL_CODE" "{$PROJ_DIR$\..\..\src\motor_step.c}.33.9" 0 0 1 "" 0 "" 0
+Count=1
+[Aliases]
+Count=0
+SuppressDialog=0

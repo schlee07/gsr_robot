@@ -1,0 +1,9 @@
+---- g_isr_step_motor_10ms_cnt Matches (5 in 3 files) ----
+Motor_step.c (src):s16 g_isr_step_motor_10ms_cnt = 0;
+Motor_step.c (src):	if( g_isr_step_motor_10ms_cnt++ > g_step_motor_intrv_time[array_cnt] )
+Motor_step.c (src):		g_isr_step_motor_10ms_cnt = 0;
+Motor_step.h (src):extern s16 g_isr_step_motor_10ms_cnt;
+Timer.c (src):    g_isr_step_motor_10ms_cnt = 0;
+---- timer2_event Matches (2 in 1 files) ----
+Main.c (src):void timer2_event(void)
+Main.c (src):	register_timer_function(timer2ServiceFunction, timer2_event);
