@@ -1,0 +1,230 @@
+
+PWM.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  0000015a  000001ce  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000015a  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .stab         000006cc  00000000  00000000  000001d0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000085  00000000  00000000  0000089c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_aranges 000000c0  00000000  00000000  00000928  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000004eb  00000000  00000000  000009e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000000c1  00000000  00000000  00000ed3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000394  00000000  00000000  00000f94  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000024  00000000  00000000  00001328  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000079  00000000  00000000  0000134c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000002e  00000000  00000000  000013c5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000010  00000000  00000000  000013f3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 46 00 	jmp	0x8c	; 0x8c <__ctors_end>
+   4:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+   8:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+   c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  10:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  14:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  18:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  1c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  20:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  24:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  28:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  2c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  30:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  34:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  38:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  3c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  40:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  44:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  48:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  4c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  50:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  54:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  58:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  5c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  60:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  64:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  68:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  6c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  70:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  74:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  78:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  7c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  80:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  84:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  88:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+
+0000008c <__ctors_end>:
+  8c:	11 24       	eor	r1, r1
+  8e:	1f be       	out	0x3f, r1	; 63
+  90:	cf ef       	ldi	r28, 0xFF	; 255
+  92:	d0 e1       	ldi	r29, 0x10	; 16
+  94:	de bf       	out	0x3e, r29	; 62
+  96:	cd bf       	out	0x3d, r28	; 61
+
+00000098 <__do_copy_data>:
+  98:	11 e0       	ldi	r17, 0x01	; 1
+  9a:	a0 e0       	ldi	r26, 0x00	; 0
+  9c:	b1 e0       	ldi	r27, 0x01	; 1
+  9e:	ea e5       	ldi	r30, 0x5A	; 90
+  a0:	f1 e0       	ldi	r31, 0x01	; 1
+  a2:	00 e0       	ldi	r16, 0x00	; 0
+  a4:	0b bf       	out	0x3b, r16	; 59
+  a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
+  a8:	07 90       	elpm	r0, Z+
+  aa:	0d 92       	st	X+, r0
+  ac:	a0 30       	cpi	r26, 0x00	; 0
+  ae:	b1 07       	cpc	r27, r17
+  b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
+  b2:	1b be       	out	0x3b, r1	; 59
+
+000000b4 <__do_clear_bss>:
+  b4:	11 e0       	ldi	r17, 0x01	; 1
+  b6:	a0 e0       	ldi	r26, 0x00	; 0
+  b8:	b1 e0       	ldi	r27, 0x01	; 1
+  ba:	01 c0       	rjmp	.+2      	; 0xbe <.do_clear_bss_start>
+
+000000bc <.do_clear_bss_loop>:
+  bc:	1d 92       	st	X+, r1
+
+000000be <.do_clear_bss_start>:
+  be:	a0 30       	cpi	r26, 0x00	; 0
+  c0:	b1 07       	cpc	r27, r17
+  c2:	e1 f7       	brne	.-8      	; 0xbc <.do_clear_bss_loop>
+  c4:	0e 94 68 00 	call	0xd0	; 0xd0 <main>
+  c8:	0c 94 ab 00 	jmp	0x156	; 0x156 <_exit>
+
+000000cc <__bad_interrupt>:
+  cc:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000d0 <main>:
+int main()
+
+{
+	int adc_buffer;
+
+	DDRB = 0X10; // 0C0(PB4) 출력
+  d0:	80 e1       	ldi	r24, 0x10	; 16
+  d2:	87 bb       	out	0x17, r24	; 23
+
+	TCCR0 = 0x7E;
+  d4:	8e e7       	ldi	r24, 0x7E	; 126
+  d6:	83 bf       	out	0x33, r24	; 51
+	TCNT0 = 0;
+  d8:	12 be       	out	0x32, r1	; 50
+	OCR0  = 0;
+  da:	11 be       	out	0x31, r1	; 49
+
+	ADMUX = 1;
+  dc:	81 e0       	ldi	r24, 0x01	; 1
+  de:	87 b9       	out	0x07, r24	; 7
+	ADMUX |= 0x40;
+  e0:	3e 9a       	sbi	0x07, 6	; 7
+	ADCSR = 0x86;
+  e2:	86 e8       	ldi	r24, 0x86	; 134
+  e4:	86 b9       	out	0x06, r24	; 6
+	{
+		ADCSR |= 0x40;
+		while( !(ADCSR & (1 << ADIF)) );
+		adc_buffer = ADCL;
+		adc_buffer |= (ADCH << 8); // 서로 다른 레지스터를 16비트로 정렬 하여 사용하기위해서 8bit를 shift 한다.  	
+		OCR0 = adc_buffer /4;  // 1024 -> 256  
+  e6:	24 e0       	ldi	r18, 0x04	; 4
+  e8:	30 e0       	ldi	r19, 0x00	; 0
+
+
+
+	while(1)
+	{
+		ADCSR |= 0x40;
+  ea:	36 9a       	sbi	0x06, 6	; 6
+		while( !(ADCSR & (1 << ADIF)) );
+  ec:	34 9b       	sbis	0x06, 4	; 6
+  ee:	fe cf       	rjmp	.-4      	; 0xec <main+0x1c>
+		adc_buffer = ADCL;
+  f0:	84 b1       	in	r24, 0x04	; 4
+  f2:	90 e0       	ldi	r25, 0x00	; 0
+		adc_buffer |= (ADCH << 8); // 서로 다른 레지스터를 16비트로 정렬 하여 사용하기위해서 8bit를 shift 한다.  	
+  f4:	45 b1       	in	r20, 0x05	; 5
+  f6:	f4 2f       	mov	r31, r20
+  f8:	e0 e0       	ldi	r30, 0x00	; 0
+  fa:	8e 2b       	or	r24, r30
+  fc:	9f 2b       	or	r25, r31
+		OCR0 = adc_buffer /4;  // 1024 -> 256  
+  fe:	b9 01       	movw	r22, r18
+ 100:	0e 94 84 00 	call	0x108	; 0x108 <__divmodhi4>
+ 104:	61 bf       	out	0x31, r22	; 49
+	}
+ 106:	f1 cf       	rjmp	.-30     	; 0xea <main+0x1a>
+
+00000108 <__divmodhi4>:
+ 108:	97 fb       	bst	r25, 7
+ 10a:	09 2e       	mov	r0, r25
+ 10c:	07 26       	eor	r0, r23
+ 10e:	0a d0       	rcall	.+20     	; 0x124 <__divmodhi4_neg1>
+ 110:	77 fd       	sbrc	r23, 7
+ 112:	04 d0       	rcall	.+8      	; 0x11c <__divmodhi4_neg2>
+ 114:	0c d0       	rcall	.+24     	; 0x12e <__udivmodhi4>
+ 116:	06 d0       	rcall	.+12     	; 0x124 <__divmodhi4_neg1>
+ 118:	00 20       	and	r0, r0
+ 11a:	1a f4       	brpl	.+6      	; 0x122 <__divmodhi4_exit>
+
+0000011c <__divmodhi4_neg2>:
+ 11c:	70 95       	com	r23
+ 11e:	61 95       	neg	r22
+ 120:	7f 4f       	sbci	r23, 0xFF	; 255
+
+00000122 <__divmodhi4_exit>:
+ 122:	08 95       	ret
+
+00000124 <__divmodhi4_neg1>:
+ 124:	f6 f7       	brtc	.-4      	; 0x122 <__divmodhi4_exit>
+ 126:	90 95       	com	r25
+ 128:	81 95       	neg	r24
+ 12a:	9f 4f       	sbci	r25, 0xFF	; 255
+ 12c:	08 95       	ret
+
+0000012e <__udivmodhi4>:
+ 12e:	aa 1b       	sub	r26, r26
+ 130:	bb 1b       	sub	r27, r27
+ 132:	51 e1       	ldi	r21, 0x11	; 17
+ 134:	07 c0       	rjmp	.+14     	; 0x144 <__udivmodhi4_ep>
+
+00000136 <__udivmodhi4_loop>:
+ 136:	aa 1f       	adc	r26, r26
+ 138:	bb 1f       	adc	r27, r27
+ 13a:	a6 17       	cp	r26, r22
+ 13c:	b7 07       	cpc	r27, r23
+ 13e:	10 f0       	brcs	.+4      	; 0x144 <__udivmodhi4_ep>
+ 140:	a6 1b       	sub	r26, r22
+ 142:	b7 0b       	sbc	r27, r23
+
+00000144 <__udivmodhi4_ep>:
+ 144:	88 1f       	adc	r24, r24
+ 146:	99 1f       	adc	r25, r25
+ 148:	5a 95       	dec	r21
+ 14a:	a9 f7       	brne	.-22     	; 0x136 <__udivmodhi4_loop>
+ 14c:	80 95       	com	r24
+ 14e:	90 95       	com	r25
+ 150:	bc 01       	movw	r22, r24
+ 152:	cd 01       	movw	r24, r26
+ 154:	08 95       	ret
+
+00000156 <_exit>:
+ 156:	f8 94       	cli
+
+00000158 <__stop_program>:
+ 158:	ff cf       	rjmp	.-2      	; 0x158 <__stop_program>

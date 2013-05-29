@@ -1,0 +1,354 @@
+
+Timer0.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000000a  00800100  00000248  000002dc  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000248  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000005  0080010a  0080010a  000002e6  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  000002e8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  000009b4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 000000a8  00000000  00000000  00000a40  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000581  00000000  00000000  00000ae8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000191  00000000  00000000  00001069  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000038c  00000000  00000000  000011fa  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000005c  00000000  00000000  00001588  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000000f1  00000000  00000000  000015e4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000007d  00000000  00000000  000016d5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000018  00000000  00000000  00001752  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 46 00 	jmp	0x8c	; 0x8c <__ctors_end>
+   4:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+   8:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+   c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  10:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  14:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  18:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  1c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  20:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  24:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  28:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  2c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  30:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  34:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  38:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  3c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  40:	0c 94 68 00 	jmp	0xd0	; 0xd0 <__vector_16>
+  44:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  48:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  4c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  50:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  54:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  58:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  5c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  60:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  64:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  68:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  6c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  70:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  74:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  78:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  7c:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  80:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  84:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+  88:	0c 94 66 00 	jmp	0xcc	; 0xcc <__bad_interrupt>
+
+0000008c <__ctors_end>:
+  8c:	11 24       	eor	r1, r1
+  8e:	1f be       	out	0x3f, r1	; 63
+  90:	cf ef       	ldi	r28, 0xFF	; 255
+  92:	d0 e1       	ldi	r29, 0x10	; 16
+  94:	de bf       	out	0x3e, r29	; 62
+  96:	cd bf       	out	0x3d, r28	; 61
+
+00000098 <__do_copy_data>:
+  98:	11 e0       	ldi	r17, 0x01	; 1
+  9a:	a0 e0       	ldi	r26, 0x00	; 0
+  9c:	b1 e0       	ldi	r27, 0x01	; 1
+  9e:	e8 e4       	ldi	r30, 0x48	; 72
+  a0:	f2 e0       	ldi	r31, 0x02	; 2
+  a2:	00 e0       	ldi	r16, 0x00	; 0
+  a4:	0b bf       	out	0x3b, r16	; 59
+  a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
+  a8:	07 90       	elpm	r0, Z+
+  aa:	0d 92       	st	X+, r0
+  ac:	aa 30       	cpi	r26, 0x0A	; 10
+  ae:	b1 07       	cpc	r27, r17
+  b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
+  b2:	1b be       	out	0x3b, r1	; 59
+
+000000b4 <__do_clear_bss>:
+  b4:	11 e0       	ldi	r17, 0x01	; 1
+  b6:	aa e0       	ldi	r26, 0x0A	; 10
+  b8:	b1 e0       	ldi	r27, 0x01	; 1
+  ba:	01 c0       	rjmp	.+2      	; 0xbe <.do_clear_bss_start>
+
+000000bc <.do_clear_bss_loop>:
+  bc:	1d 92       	st	X+, r1
+
+000000be <.do_clear_bss_start>:
+  be:	af 30       	cpi	r26, 0x0F	; 15
+  c0:	b1 07       	cpc	r27, r17
+  c2:	e1 f7       	brne	.-8      	; 0xbc <.do_clear_bss_loop>
+  c4:	0e 94 ff 00 	call	0x1fe	; 0x1fe <main>
+  c8:	0c 94 22 01 	jmp	0x244	; 0x244 <_exit>
+
+000000cc <__bad_interrupt>:
+  cc:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000d0 <__vector_16>:
+
+
+// Timer0 Overflow interrupt Handler
+// 1ms
+ISR(TIMER0_OVF_vect) // 모든 인터럽트 이름은 ISR이라는 명칭을 갖는다. () <- 안에 인터럽트 백터번호가 들어간다.
+{
+  d0:	1f 92       	push	r1
+  d2:	0f 92       	push	r0
+  d4:	0f b6       	in	r0, 0x3f	; 63
+  d6:	0f 92       	push	r0
+  d8:	0b b6       	in	r0, 0x3b	; 59
+  da:	0f 92       	push	r0
+  dc:	11 24       	eor	r1, r1
+  de:	6f 93       	push	r22
+  e0:	7f 93       	push	r23
+  e2:	8f 93       	push	r24
+  e4:	9f 93       	push	r25
+  e6:	ef 93       	push	r30
+  e8:	ff 93       	push	r31
+	TCNT0 = 256- 125 ; // 반드시 초기화 해준다.
+  ea:	83 e8       	ldi	r24, 0x83	; 131
+  ec:	82 bf       	out	0x32, r24	; 50
+	tick0++;
+  ee:	80 91 0b 01 	lds	r24, 0x010B
+  f2:	90 91 0c 01 	lds	r25, 0x010C
+  f6:	01 96       	adiw	r24, 0x01	; 1
+  f8:	90 93 0c 01 	sts	0x010C, r25
+  fc:	80 93 0b 01 	sts	0x010B, r24
+
+	if ( tick0 == 100)
+ 100:	80 91 0b 01 	lds	r24, 0x010B
+ 104:	90 91 0c 01 	lds	r25, 0x010C
+ 108:	84 36       	cpi	r24, 0x64	; 100
+ 10a:	91 05       	cpc	r25, r1
+ 10c:	d1 f4       	brne	.+52     	; 0x142 <__vector_16+0x72>
+	{
+		tick0 = 0;
+ 10e:	10 92 0c 01 	sts	0x010C, r1
+ 112:	10 92 0b 01 	sts	0x010B, r1
+		sec++;
+ 116:	80 91 0e 01 	lds	r24, 0x010E
+ 11a:	8f 5f       	subi	r24, 0xFF	; 255
+ 11c:	80 93 0e 01 	sts	0x010E, r24
+		if( sec == 60)
+ 120:	80 91 0e 01 	lds	r24, 0x010E
+ 124:	8c 33       	cpi	r24, 0x3C	; 60
+ 126:	39 f4       	brne	.+14     	; 0x136 <__vector_16+0x66>
+		{
+			sec=0; 
+ 128:	10 92 0e 01 	sts	0x010E, r1
+			min++;
+ 12c:	80 91 0d 01 	lds	r24, 0x010D
+ 130:	8f 5f       	subi	r24, 0xFF	; 255
+ 132:	80 93 0d 01 	sts	0x010D, r24
+		}
+		if(min == 60)
+ 136:	80 91 0d 01 	lds	r24, 0x010D
+ 13a:	8c 33       	cpi	r24, 0x3C	; 60
+ 13c:	11 f4       	brne	.+4      	; 0x142 <__vector_16+0x72>
+		{
+			min = 0;
+ 13e:	10 92 0d 01 	sts	0x010D, r1
+		}
+
+
+	}
+	
+	PORTE = 0x00; 
+ 142:	13 b8       	out	0x03, r1	; 3
+	PORTF = 0x00;
+ 144:	10 92 62 00 	sts	0x0062, r1
+	
+	if  (count == 0 ) 
+ 148:	80 91 0a 01 	lds	r24, 0x010A
+ 14c:	88 23       	and	r24, r24
+ 14e:	69 f4       	brne	.+26     	; 0x16a <__vector_16+0x9a>
+	{
+		PORTA = segTable[sec % 10]; 
+ 150:	80 91 0e 01 	lds	r24, 0x010E
+ 154:	6a e0       	ldi	r22, 0x0A	; 10
+ 156:	0e 94 16 01 	call	0x22c	; 0x22c <__udivmodqi4>
+ 15a:	e9 2f       	mov	r30, r25
+ 15c:	f0 e0       	ldi	r31, 0x00	; 0
+ 15e:	e0 50       	subi	r30, 0x00	; 0
+ 160:	ff 4f       	sbci	r31, 0xFF	; 255
+ 162:	80 81       	ld	r24, Z
+ 164:	8b bb       	out	0x1b, r24	; 27
+		PORTF = 0x04;
+ 166:	84 e0       	ldi	r24, 0x04	; 4
+ 168:	10 c0       	rjmp	.+32     	; 0x18a <__vector_16+0xba>
+	}
+    else if (count == 1)
+ 16a:	80 91 0a 01 	lds	r24, 0x010A
+ 16e:	81 30       	cpi	r24, 0x01	; 1
+ 170:	79 f4       	brne	.+30     	; 0x190 <__vector_16+0xc0>
+	{
+	 	PORTA =segTable[sec / 10 ] ;
+ 172:	80 91 0e 01 	lds	r24, 0x010E
+ 176:	6a e0       	ldi	r22, 0x0A	; 10
+ 178:	0e 94 16 01 	call	0x22c	; 0x22c <__udivmodqi4>
+ 17c:	e8 2f       	mov	r30, r24
+ 17e:	f0 e0       	ldi	r31, 0x00	; 0
+ 180:	e0 50       	subi	r30, 0x00	; 0
+ 182:	ff 4f       	sbci	r31, 0xFF	; 255
+ 184:	80 81       	ld	r24, Z
+ 186:	8b bb       	out	0x1b, r24	; 27
+		PORTF =0x08;
+ 188:	88 e0       	ldi	r24, 0x08	; 8
+ 18a:	80 93 62 00 	sts	0x0062, r24
+ 18e:	22 c0       	rjmp	.+68     	; 0x1d4 <__vector_16+0x104>
+	}
+	else if (count == 2)
+ 190:	80 91 0a 01 	lds	r24, 0x010A
+ 194:	82 30       	cpi	r24, 0x02	; 2
+ 196:	69 f4       	brne	.+26     	; 0x1b2 <__vector_16+0xe2>
+	{
+	 	PORTA =segTable[min % 10 ] ;
+ 198:	80 91 0d 01 	lds	r24, 0x010D
+ 19c:	6a e0       	ldi	r22, 0x0A	; 10
+ 19e:	0e 94 16 01 	call	0x22c	; 0x22c <__udivmodqi4>
+ 1a2:	e9 2f       	mov	r30, r25
+ 1a4:	f0 e0       	ldi	r31, 0x00	; 0
+ 1a6:	e0 50       	subi	r30, 0x00	; 0
+ 1a8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1aa:	80 81       	ld	r24, Z
+ 1ac:	8b bb       	out	0x1b, r24	; 27
+		PORTE =0x04;
+ 1ae:	84 e0       	ldi	r24, 0x04	; 4
+ 1b0:	10 c0       	rjmp	.+32     	; 0x1d2 <__vector_16+0x102>
+	}
+	else if (count == 3)
+ 1b2:	80 91 0a 01 	lds	r24, 0x010A
+ 1b6:	83 30       	cpi	r24, 0x03	; 3
+ 1b8:	69 f4       	brne	.+26     	; 0x1d4 <__vector_16+0x104>
+	{
+	 	PORTA =segTable[min / 10 ];
+ 1ba:	80 91 0d 01 	lds	r24, 0x010D
+ 1be:	6a e0       	ldi	r22, 0x0A	; 10
+ 1c0:	0e 94 16 01 	call	0x22c	; 0x22c <__udivmodqi4>
+ 1c4:	e8 2f       	mov	r30, r24
+ 1c6:	f0 e0       	ldi	r31, 0x00	; 0
+ 1c8:	e0 50       	subi	r30, 0x00	; 0
+ 1ca:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1cc:	80 81       	ld	r24, Z
+ 1ce:	8b bb       	out	0x1b, r24	; 27
+		PORTE =0x08;
+ 1d0:	88 e0       	ldi	r24, 0x08	; 8
+ 1d2:	83 b9       	out	0x03, r24	; 3
+	}
+
+	count = ++count % 4;
+ 1d4:	80 91 0a 01 	lds	r24, 0x010A
+ 1d8:	8f 5f       	subi	r24, 0xFF	; 255
+ 1da:	80 93 0a 01 	sts	0x010A, r24
+ 1de:	83 70       	andi	r24, 0x03	; 3
+ 1e0:	80 93 0a 01 	sts	0x010A, r24
+
+}
+ 1e4:	ff 91       	pop	r31
+ 1e6:	ef 91       	pop	r30
+ 1e8:	9f 91       	pop	r25
+ 1ea:	8f 91       	pop	r24
+ 1ec:	7f 91       	pop	r23
+ 1ee:	6f 91       	pop	r22
+ 1f0:	0f 90       	pop	r0
+ 1f2:	0b be       	out	0x3b, r0	; 59
+ 1f4:	0f 90       	pop	r0
+ 1f6:	0f be       	out	0x3f, r0	; 63
+ 1f8:	0f 90       	pop	r0
+ 1fa:	1f 90       	pop	r1
+ 1fc:	18 95       	reti
+
+000001fe <main>:
+
+
+
+int main(void)
+{
+	DDRA = 0xFF;     // 7 6 5 4 3 2 1 0  
+ 1fe:	8f ef       	ldi	r24, 0xFF	; 255
+ 200:	8a bb       	out	0x1a, r24	; 26
+	DDRE = 0x0C;	 // 0 0 0 0 1 1	0 0
+ 202:	8c e0       	ldi	r24, 0x0C	; 12
+ 204:	82 b9       	out	0x02, r24	; 2
+	DDRF = 0x0C;	 // 0 0 0 0 1 1	0 0
+ 206:	80 93 61 00 	sts	0x0061, r24
+
+
+	TCCR0 = 0x05; 		 // 0 0 0 0 0 1 0 1  128분주  -> 8 us
+ 20a:	85 e0       	ldi	r24, 0x05	; 5
+ 20c:	83 bf       	out	0x33, r24	; 51
+	TCNT0 = 256- 125 ;  // 발생주기 8 us * 125 = 1ms
+ 20e:	83 e8       	ldi	r24, 0x83	; 131
+ 210:	82 bf       	out	0x32, r24	; 50
+	TIMSK = 0x01;		 //	overflow interrupt 사용
+ 212:	81 e0       	ldi	r24, 0x01	; 1
+ 214:	87 bf       	out	0x37, r24	; 55
+	sei();				// avr의 전체 interrupt 활성화
+ 216:	78 94       	sei
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 218:	8f ef       	ldi	r24, 0xFF	; 255
+ 21a:	91 ee       	ldi	r25, 0xE1	; 225
+ 21c:	a4 e0       	ldi	r26, 0x04	; 4
+ 21e:	81 50       	subi	r24, 0x01	; 1
+ 220:	90 40       	sbci	r25, 0x00	; 0
+ 222:	a0 40       	sbci	r26, 0x00	; 0
+ 224:	e1 f7       	brne	.-8      	; 0x21e <main+0x20>
+ 226:	00 c0       	rjmp	.+0      	; 0x228 <main+0x2a>
+ 228:	00 00       	nop
+ 22a:	f6 cf       	rjmp	.-20     	; 0x218 <main+0x1a>
+
+0000022c <__udivmodqi4>:
+ 22c:	99 1b       	sub	r25, r25
+ 22e:	79 e0       	ldi	r23, 0x09	; 9
+ 230:	04 c0       	rjmp	.+8      	; 0x23a <__udivmodqi4_ep>
+
+00000232 <__udivmodqi4_loop>:
+ 232:	99 1f       	adc	r25, r25
+ 234:	96 17       	cp	r25, r22
+ 236:	08 f0       	brcs	.+2      	; 0x23a <__udivmodqi4_ep>
+ 238:	96 1b       	sub	r25, r22
+
+0000023a <__udivmodqi4_ep>:
+ 23a:	88 1f       	adc	r24, r24
+ 23c:	7a 95       	dec	r23
+ 23e:	c9 f7       	brne	.-14     	; 0x232 <__udivmodqi4_loop>
+ 240:	80 95       	com	r24
+ 242:	08 95       	ret
+
+00000244 <_exit>:
+ 244:	f8 94       	cli
+
+00000246 <__stop_program>:
+ 246:	ff cf       	rjmp	.-2      	; 0x246 <__stop_program>
