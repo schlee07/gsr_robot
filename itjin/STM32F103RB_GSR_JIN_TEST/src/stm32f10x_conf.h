@@ -46,7 +46,7 @@
 /* Exported constants --------------------------------------------------------*/
 /* Uncomment the line below to expanse the "assert_param" macro in the 
    Standard Peripheral Library drivers code */
-/* #define USE_FULL_ASSERT    1 */
+#define USE_FULL_ASSERT    1 // gsr-20130609-itjin: Feature on
 
 /* Exported macro ------------------------------------------------------------*/
 #ifdef  USE_FULL_ASSERT

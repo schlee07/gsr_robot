@@ -49,13 +49,13 @@ void led_rotate_test(void)
 {
     u8 rotate_bit = 1;
     u8 loop_cnt =0, stack_cnt=0;
-    u16 led_disp_delay = 5;
+    u16 led_disp_delay = 50;
     u16 read_led_port = 0, out_led_port = 0;
 
     read_led_port = GPIO_ReadOutputData(GPIOC);
     read_led_port |= 0x00ff;    // All led off. Active low
     GPIO_Write(GPIOC, read_led_port);
-    wait_10ms(50); // 500ms
+    wait_1ms(500); // 500ms
 
     // Led push to stack
 
@@ -67,7 +67,7 @@ void led_rotate_test(void)
         {
             out_led_port = read_led_port & (u16)(~rotate_bit);
             GPIO_Write(GPIOC, out_led_port);
-            wait_10ms(led_disp_delay);
+            wait_1ms(led_disp_delay);
             rotate_bit >>= 1;
         }
     }
@@ -86,7 +86,7 @@ void led_rotate_test(void)
             rotate_bit <<= 1;
             out_led_port = read_led_port & (u16)(~rotate_bit);
             GPIO_Write(GPIOC, out_led_port);
-            wait_10ms(led_disp_delay);
+            wait_1ms(led_disp_delay);
         }
     }    
 }

@@ -17,13 +17,15 @@
 #ifndef __MAIN_H
 #define __MAIN_H
 
-#define DEV_KIT_LED_TEST // gsr-20130515-ivanjin: Connect GPIO led from port c0 ~ c7.
-#define DEV_KIT_STEP_MOTOR_TEST  // gsr-20130520-ivanjin: Timer 3 Test
-
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
 #include "hw_config.h"
 
+
+#define DEV_KIT_LED_TEST            // gsr-20130515-itjin: Connect GPIO led from port c0 ~ c7.
+#define DEV_KIT_STEP_MOTOR_TEST     // gsr-20130520-itjin: Timer 3 Test
+#undef DEV_KIT_I2C_TOUCH_KEY_TEST  // gsr-20130622-itjin: I2C communication test
+#define DEV_KIT_ADC_CONV_TEST       // gsr-20130622-itjin: ADC convert test
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
@@ -120,10 +122,11 @@ void service_timer_exit(void);
 void service_rtc_start(void);
 void service_rtc_stop(void);
 void service_rtc_exit(void);
-void wait_10ms(s16 ms_10);
+void wait_10ms(u16 ms_10);
+void wait_1ms(u16 ms_1);
 
 
-// gsr-20130522-ivanjin: added for additional sevice menu
+// gsr-20130522-itjin: added for additional sevice menu
 void service_exit_menu(void);
 
 void tim_display(u32 TimeVar);

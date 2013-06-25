@@ -29,9 +29,9 @@ void i2c_Test_Example(void)
     while(1)
     {
 //        i2c_WriteRegister(TOUCH_KEY_DEV_ADDR, 0, 0x55);
-        ReadData=(unsigned char)i2c_ReadRegister(TOUCH_KEY_DEV_ADDR, 0x01);
+        ReadData=(unsigned char)i2c_ReadRegister(0xA0 /*TOUCH_KEY_DEV_ADDR*/, 0x01);
 
-//        ReadData=(unsigned char)i2c_ReadRegisterByte(TOUCH_KEY_DEV_ADDR, 0x00);
+        ReadData=(unsigned char)i2c_ReadRegisterByte(0xA0 /*TOUCH_KEY_DEV_ADDR*/, 0x00);
         usart1_transmit_string_format("\r\n Data: 0x%02X", ReadData);
         wait_1ms(1000);
     }
@@ -63,7 +63,7 @@ static void I2C_Config(void)
   I2C_InitStructure.I2C_OwnAddress1 = 0x0;//0x33; // RECHECK
   I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
   I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-  I2C_InitStructure.I2C_ClockSpeed = 200000;
+  I2C_InitStructure.I2C_ClockSpeed = 50000;
   I2C_Init(I2C1, &I2C_InitStructure);
 }
 

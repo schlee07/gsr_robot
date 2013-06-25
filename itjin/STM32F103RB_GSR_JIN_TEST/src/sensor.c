@@ -7,6 +7,7 @@
 #include "motor_step.h"
 #include "sensor.h"
 
+vu16 ADC1ConvertedValue[3] = {0};
 
 u16 robot_read_sensor(robot_sensor_type sensor)
 {
@@ -44,4 +45,21 @@ u16 robot_read_sensor(robot_sensor_type sensor)
 
     return ret_value;
 }
+
+void test_func_adc_conv(void)
+{   
+    /* Start ADC1 Software Conversion */ 
+    ADC_SoftwareStartConvCmd(ADC1, ENABLE);
+    wait_1ms(3000);
+    
+    while(1)
+    {
+    	usart1_transmit_string_format("\r\n ADC1=%05d ADC2=%05d ADC3=%05d", ADC1ConvertedValue[0], ADC1ConvertedValue[1], ADC1ConvertedValue[2]);        
+
+        wait_1ms(500);
+    }
+}
+
+
+
 

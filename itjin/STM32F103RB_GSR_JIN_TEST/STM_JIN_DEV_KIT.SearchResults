@@ -1,9 +1,30 @@
----- g_isr_step_motor_10ms_cnt Matches (5 in 3 files) ----
-Motor_step.c (src):s16 g_isr_step_motor_10ms_cnt = 0;
-Motor_step.c (src):	if( g_isr_step_motor_10ms_cnt++ > g_step_motor_intrv_time[array_cnt] )
-Motor_step.c (src):		g_isr_step_motor_10ms_cnt = 0;
-Motor_step.h (src):extern s16 g_isr_step_motor_10ms_cnt;
-Timer.c (src):    g_isr_step_motor_10ms_cnt = 0;
----- timer2_event Matches (2 in 1 files) ----
-Main.c (src):void timer2_event(void)
-Main.c (src):	register_timer_function(timer2ServiceFunction, timer2_event);
+---- ADC_Channel Matches (29 in 2 files) ----
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):  * @param  ADC_Channel: the ADC channel to configure. 
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):void ADC_RegularChannelConfig(ADC_TypeDef* ADCx, uint8_t ADC_Channel, uint8_t Rank, uint8_t ADC_SampleTime)
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):  assert_param(IS_ADC_CHANNEL(ADC_Channel));
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):  if (ADC_Channel > ADC_Channel_9)
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):    tmpreg2 = SMPR1_SMP_Set << (3 * (ADC_Channel - 10));
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):    tmpreg2 = (uint32_t)ADC_SampleTime << (3 * (ADC_Channel - 10));
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):  else /* ADC_Channel include in ADC_Channel_[0..9] */
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):    tmpreg2 = SMPR2_SMP_Set << (3 * ADC_Channel);
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):    tmpreg2 = (uint32_t)ADC_SampleTime << (3 * ADC_Channel);
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):    tmpreg2 = (uint32_t)ADC_Channel << (5 * (Rank - 1));
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):    tmpreg2 = (uint32_t)ADC_Channel << (5 * (Rank - 7));
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):    tmpreg2 = (uint32_t)ADC_Channel << (5 * (Rank - 13));
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):  * @param  ADC_Channel: the ADC channel to configure. 
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):void ADC_InjectedChannelConfig(ADC_TypeDef* ADCx, uint8_t ADC_Channel, uint8_t Rank, uint8_t ADC_SampleTime)
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):  assert_param(IS_ADC_CHANNEL(ADC_Channel));
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):  if (ADC_Channel > ADC_Channel_9)
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):    tmpreg2 = SMPR1_SMP_Set << (3*(ADC_Channel - 10));
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):    tmpreg2 = (uint32_t)ADC_SampleTime << (3*(ADC_Channel - 10));
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):  else /* ADC_Channel include in ADC_Channel_[0..9] */
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):    tmpreg2 = SMPR2_SMP_Set << (3 * ADC_Channel);
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):    tmpreg2 = (uint32_t)ADC_SampleTime << (3 * ADC_Channel);
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):  tmpreg2 = (uint32_t)ADC_Channel << (5 * (uint8_t)((Rank + 3) - (tmpreg3 + 1)));
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):  * @param  ADC_Channel: the ADC channel to configure for the analog watchdog. 
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):void ADC_AnalogWatchdogSingleChannelConfig(ADC_TypeDef* ADCx, uint8_t ADC_Channel)
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):  assert_param(IS_ADC_CHANNEL(ADC_Channel));
+Stm32f10x_adc.c (lib\libraries\stm32f10x_stdperiph_driver\src):  tmpreg |= ADC_Channel;
+Stm32f10x_adc.h (lib\libraries\stm32f10x_stdperiph_driver\inc):void ADC_RegularChannelConfig(ADC_TypeDef* ADCx, uint8_t ADC_Channel, uint8_t Rank, uint8_t ADC_SampleTime);
+Stm32f10x_adc.h (lib\libraries\stm32f10x_stdperiph_driver\inc):void ADC_InjectedChannelConfig(ADC_TypeDef* ADCx, uint8_t ADC_Channel, uint8_t Rank, uint8_t ADC_SampleTime);
+Stm32f10x_adc.h (lib\libraries\stm32f10x_stdperiph_driver\inc):void ADC_AnalogWatchdogSingleChannelConfig(ADC_TypeDef* ADCx, uint8_t ADC_Channel);

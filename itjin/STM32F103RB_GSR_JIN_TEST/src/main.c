@@ -41,6 +41,8 @@ STM32F103ZET6(512KB, 64KB) :  USE_STDPERIPH_DRIVER, STM32F10X_HD
 #include "usart.h"
 #include "rtc.h"
 #include "motor_step.h"
+#include "sensor.h"
+#include "i2c_test.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -115,31 +117,39 @@ static volatile s8 s_blink_service = 0;
 static volatile s8 s_rtc_service = 0;
 static volatile s16 s_blink_cnt = 0;
 static volatile u16 s_wait_cnt = 0;
-vu32 time_display = 0;
-#if 1 // test
-static volatile u16 s_delay_cnt = 0;
-#endif
+//vu32 time_display = 0;
+
 #ifdef DEV_KIT_LED_TEST
 static volatile u16 s_satus_led_flag = 0;
 #endif /* DEV_KIT_LED_TEST */
 
-void wait_10ms(s16 ms_10)
+void wait_10ms(u16 ms_10)
 {
 	s_wait_cnt = 0;
 	while( s_wait_cnt < ms_10 );
 }
 
-#if 1 // test
-void wait_1ms(s16 ms_10)
+// gsr-20130609-itjin: added 1ms function
+void wait_1ms(u16 ms_1)
 {
-	s_delay_cnt = 100;
-    do
+    s16 tmp_ms = ms_1 / 10;
+    u16 delay_cnt = 0;
+
+    // Wait over 10ms
+    if(tmp_ms > 0)
     {
-        s_delay_cnt = 100;
-        while(--s_delay_cnt);
-    }while(--ms_10);
+        wait_10ms(tmp_ms);
+    }
+
+    // Wait 1ms
+    tmp_ms = ms_1 % 10;
+	delay_cnt = 100;
+	while(tmp_ms--)
+	{
+        delay_cnt = 100;
+        while(delay_cnt--);
+    };
 }
-#endif
 
 void timer2_event(void)
 {
@@ -280,19 +290,26 @@ int main(void)
 
 	bsp_init_gpio();
 	bsp_init_interrupt();
+#ifdef DEV_KIT_ADC_CONV_TEST
+    bsp_init_adc();
+    DMA_Initial();
+#endif /* DEV_KIT_ADC_CONV_TEST */
+
 #ifdef DEV_KIT_STEP_MOTOR_TEST
     step_motor_enable(DISABLE);
 #endif /* DEV_KIT_STEP_MOTOR_TEST */
 
 	register_timer_function(timer2ServiceFunction, timer2_event);
 #ifdef DEV_KIT_STEP_MOTOR_TEST
-    register_timer_function(timer3ServiceFunction, isr_motor_event);    
+    register_timer_function(timer3ServiceFunction, isr_left_motor_event);
+    register_timer_function(timer4ServiceFunction, isr_right_motor_event);    
 #endif /* DEV_KIT_STEP_MOTOR_TEST */
 	register_rtc_function(rtcServiceFunction, rtc_event);
 
 	bsp_init_timer2();
 #ifdef DEV_KIT_STEP_MOTOR_TEST
     bsp_init_timer3(DISABLE);
+    bsp_init_timer4(DISABLE);    
 #endif /* DEV_KIT_STEP_MOTOR_TEST */
 
 	bsp_init_irq_usart1();
@@ -304,7 +321,7 @@ int main(void)
 	// User LED ON
 	bsp_led_on(ledUser);
 #ifdef DEV_KIT_LED_TEST
-    led_rotate_test();
+    //led_rotate_test();
     s_satus_led_flag = 1; // Go status led
 #endif /* DEV_KIT_LED_TEST */
 	welcome();
@@ -320,27 +337,58 @@ int main(void)
 
 	usart1_tx_proc();
 
-
-#if 0 //#ifdef DEV_KIT_LED_TEST
-//    GPIO_SetBits(GPIOC, GPIO_Pin_0)
-    GPIO_ResetBits(GPIOC, GPIO_Pin_0);
-    GPIO_ResetBits(GPIOC, GPIO_Pin_1);
-    GPIO_ResetBits(GPIOC, GPIO_Pin_2);
-    GPIO_ResetBits(GPIOC, GPIO_Pin_3);    
-    GPIO_ResetBits(GPIOC, GPIO_Pin_4);
-    GPIO_ResetBits(GPIOC, GPIO_Pin_5);
-    GPIO_ResetBits(GPIOC, GPIO_Pin_6);
-    GPIO_ResetBits(GPIOC, GPIO_Pin_7);
-#endif /* DEV_KIT_LED_TEST */
 	
+#ifdef DEV_KIT_I2C_TOUCH_KEY_TEST
+    i2c_GPIO_Config();
+#endif /* DEV_KIT_I2C_TOUCH_KEY_TEST */
+
 	while( 1 )
 	{
+#ifdef DEV_KIT_I2C_TOUCH_KEY_TEST
+        i2c_Test_Example();
+#endif /* DEV_KIT_I2C_TOUCH_KEY_TEST */
+
+        
+#ifdef DEV_KIT_ADC_CONV_TEST
+
+//        test_func_adc_conv();
+#endif /* DEV_KIT_ADC_CONV_TEST */
+        
 		if( run_menu_selection() != 0 )
 			display_menu();
 
-#ifdef DEV_KIT_STEP_MOTOR_TEST
-        step_motor_start(ROBOT_GO_FORWARD);    
-#endif /* DEV_KIT_STEP_MOTOR_TEST */
+        motor_all(3000, ACT_GO_FORWARD, NOT_ADJUSMENT); // 300cm
+        wait_1ms(2000); // 5seconds
+
+        motor_all(3000, ACT_GO_BACKWARD, NOT_ADJUSMENT);
+        wait_1ms(2000);
+
+        motor_all(1000, ACT_GO_FORWARD, ADJUSMENT_FRONT);
+        wait_1ms(2000);
+        
+        robot_turn(TURN_LEFT, TURN_90_DEGREE);
+        wait_1ms(2000);
+
+        robot_turn(TURN_RIGHT, TURN_90_DEGREE);
+        wait_1ms(2000);
+        
+        motor_all(10000, ACT_GO_FORWARD, SETTING_ONLY);
+        while((g_left_mot.step_count <= MM_TO_STEP(700)) || (g_right_mot.step_count <= MM_TO_STEP(700)))
+        {
+            if(300 < robot_read_sensor(SENSOR_TOP_AD))
+            {
+                motor_stop(STOP_EMERGENCY);
+                break;
+            }
+        }
+        motor_stop(STOP_NORMAL);
+        wait_1ms(3000);
+
+        test_func_robot_turn(TURN_LEFT, 200);
+        wait_1ms(3000);
+
+        test_func_robot_smooth_turn(TURN_LEFT);
+        wait_1ms(5000);
 	}
 
 }
@@ -445,7 +493,7 @@ void service_rtc_exit(void)
 	usart1_transmit_string("\r\nservice_rtc_exit()\r\n");
 }
 
-// gsr-20130522-ivanjin: added for additional sevice menu
+// gsr-20130522-itjin: added for additional sevice menu
 void service_exit_menu(void)
 {
 	s_menu_level = MainService;
@@ -518,8 +566,17 @@ void assert_failed(uint8_t* file, uint32_t line)
      ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 
   /* Infinite loop */
-  while (1)
-  {}
+  /*  
+    while (1)
+    {}
+  */
+// gsr-20130609-itjin: Added error display code;
+    while(1)
+    {
+        // TODO: Beep sound
+        usart1_transmit_string_format("\r\n Assert call from %s FILE %d LINE",file, line);
+        wait_1ms(1000);  // interval 1000ms
+    }
 }
 #endif
 

@@ -29,8 +29,7 @@ extern void bsp_set_timer2_cnt( u16 cnt);
 
 #ifdef DEV_KIT_STEP_MOTOR_TEST
 extern void bsp_init_timer3(FunctionalState TimerStart);
-extern u16 bsp_get_timer3_cnt(void);
-extern void bsp_set_timer3_cnt( u16 cnt);
+extern void bsp_init_timer4(FunctionalState TimerStart);
 extern void bsp_motor_timer_interrupt(FunctionalState TimerStart);
 #endif /* DEV_KIT_STEP_MOTOR_TEST */
 

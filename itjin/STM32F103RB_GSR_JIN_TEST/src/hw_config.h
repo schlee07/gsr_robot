@@ -35,6 +35,9 @@
 /* Exported functions ------------------------------------------------------- */
 extern void bsp_init_rcc(void);
 extern void bsp_init_gpio(void);
+extern void bsp_init_adc(void);
+extern void DMA_Initial(void);
+
 extern void bsp_init_interrupt(void);
 
 void Enter_LowPowerMode(void);

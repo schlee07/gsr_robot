@@ -19,8 +19,10 @@
 #include "platform_config.h"
 
 #include "led.h"
-#include "main.h" // gsr-20130515-ivanjin: include feature
-#include "motor_step.h" // DEV_KIT_STEP_MOTOR_TEST
+#include "main.h"           // gsr-20130515-itjin: include feature
+#include "motor_step.h"     // DEV_KIT_STEP_MOTOR_TEST
+#include "stm32f10x_dma.h"  // DEV_KIT_ADC_CONV_TEST
+#include "sensor.h"         // DEV_KIT_ADC_CONV_TEST    
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -143,8 +145,23 @@ void bsp_init_rcc(void)
 
 #ifdef DEV_KIT_STEP_MOTOR_TEST
     /* TIM3 clock enable */
-    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);    
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
+
+    /* TIM4 clock enable */
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
 #endif /* DEV_KIT_STEP_MOTOR_TEST */
+
+#ifdef DEV_KIT_ADC_CONV_TEST
+    /* Configure the ADC clock */
+    RCC_ADCCLKConfig(RCC_PCLK2_Div4);
+
+    /* Enable ADC1 clock */
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
+
+    /* Enable DMA1 */
+    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);     // DMA1
+#endif /* DEV_KIT_ADC_CONV_TEST */
+
 }
 
 
@@ -164,10 +181,9 @@ void bsp_init_gpio(void)
 	GPIO_Init(LED_USER_PORT, &GPIO_InitStructure);	
 
 	/* GPIOA Configuration:TIM2 Channel1, 2, 3 and 4 in Output */
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-
 	GPIO_Init(GPIOA, &GPIO_InitStructure);	
 
 #ifdef DEV_KIT_STEP_MOTOR_TEST
@@ -175,9 +191,82 @@ void bsp_init_gpio(void)
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 	GPIO_Init(STEP_MOTOR_PORT, &GPIO_InitStructure);	
+
+    GPIO_ResetBits(STEP_MOTOR_PORT, STEP_MOTOR_ENABLE);     // Toque off
 #endif /* DEV_KIT_STEP_MOTOR_TEST */
+
+#ifdef DEV_KIT_ADC_CONV_TEST
+    /* Port A0. Configure ADC Channel0 as analog input */
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
+#endif /* DEV_KIT_ADC_CONV_TEST */
+
 }
 
+#ifdef DEV_KIT_ADC_CONV_TEST
+void bsp_init_adc(void)
+{
+    ADC_InitTypeDef ADC_InitStructure;
+
+    /* Configure ADC1 to convert continously channel14 */
+    ADC_InitStructure.ADC_Mode = ADC_Mode_Independent;
+    ADC_InitStructure.ADC_ScanConvMode = ENABLE;
+    ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
+    ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_None;
+    ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
+    ADC_InitStructure.ADC_NbrOfChannel = 3;
+    ADC_Init(ADC1, &ADC_InitStructure);
+    /* Port A0. ADC1 regular channel0 configuration */ 
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_0, 1, ADC_SampleTime_55Cycles5);
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_1, 2, ADC_SampleTime_55Cycles5);
+    ADC_RegularChannelConfig(ADC1, ADC_Channel_2, 3, ADC_SampleTime_55Cycles5);    
+
+#if 1 // RE_CHECK
+    /* Enable ADC1's DMA interface */
+    ADC_DMACmd(ADC1, ENABLE);
+#endif
+
+    /* Enable ADC1 */
+    ADC_Cmd(ADC1, ENABLE);
+    /* Enable ADC1 reset calibration register */ 
+    ADC_ResetCalibration(ADC1);
+    /* Check the end of ADC1 reset calibration register */
+    while(ADC_GetResetCalibrationStatus(ADC1));
+
+    /* Start ADC1 calibration */
+    ADC_StartCalibration(ADC1);
+    /* Check the end of ADC1 calibration */
+    while(ADC_GetCalibrationStatus(ADC1));
+
+}
+
+void DMA_Initial(void)
+{
+  DMA_InitTypeDef DMA_InitStructure;
+  
+  /* DMA1 channel1 configuration ----------------------------------------------*/  
+  DMA_DeInit(DMA1_Channel1);   
+  DMA_InitStructure.DMA_PeripheralBaseAddr = ((u32)0x4001244C);  //원래 DR_ADDRESS로 정의 되어 있으나 컴파일 오류가 떠서 다시 정의 해주려다가 그냥 직접 적어줌;;
+  DMA_InitStructure.DMA_MemoryBaseAddr = (u32)&ADC1ConvertedValue;   
+  DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;   // ADC의 데이터를 memory로 이동하므로 source로 설정
+  DMA_InitStructure.DMA_BufferSize = 3;   // channel 3개 데이터를 저장해야 하므로
+  DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;   // DR_ADDRESS는 고정이므로
+  DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;   // ADC1ConvertedValue[0]에서 [2]까지 증가
+  DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;   // DR_ADDRESS 크기가 16bit(2byte)이므로
+  DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;   // 저장할 변수 크기 역시 동일 16bit(2byte)
+  DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;   
+  DMA_InitStructure.DMA_Priority = DMA_Priority_High;   
+  DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;   
+  DMA_Init(DMA1_Channel1, &DMA_InitStructure);     
+  /* Enable DMA1 channel1 */  
+  DMA_Cmd(DMA1_Channel1, ENABLE);
+ 
+   
+}
+
+#endif /* DEV_KIT_ADC_CONV_TEST */
 
 void bsp_init_interrupt(void)
 {

@@ -1908,6 +1908,9 @@
       <name>$PROJ_DIR$\..\..\src\hw_config.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\..\..\src\I2C_Test.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\..\..\src\led.c</name>
     </file>
     <file>
@@ -1921,6 +1924,9 @@
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\src\rtc.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\src\sensor.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\..\..\src\stm32f10x_it.c</name>

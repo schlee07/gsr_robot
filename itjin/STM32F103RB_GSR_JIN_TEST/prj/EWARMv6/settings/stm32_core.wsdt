@@ -12,14 +12,14 @@
           
           
           
-        <Column0>425</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>50</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Build>
         
         
         
         
-      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1216</ColumnWidth1><ColumnWidth2>324</ColumnWidth2><ColumnWidth3>81</ColumnWidth3></Build>
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>511</ColumnWidth1><ColumnWidth2>324</ColumnWidth2><ColumnWidth3>81</ColumnWidth3></Build>
     <Find-in-Files><ColumnWidth0>483</ColumnWidth0><ColumnWidth1>69</ColumnWidth1><ColumnWidth2>829</ColumnWidth2></Find-in-Files><Debug-Log><ColumnWidth0>18</ColumnWidth0><ColumnWidth1>1347</ColumnWidth1></Debug-Log><TerminalIO/></Static>
     <Windows>
       
@@ -52,14 +52,14 @@
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\src\led.c</Filename><XPos>0</XPos><YPos>91</YPos><SelStart>2413</SelStart><SelEnd>2413</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\src\timer.c</Filename><XPos>0</XPos><YPos>77</YPos><SelStart>2557</SelStart><SelEnd>2557</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\src\main.c</Filename><XPos>0</XPos><YPos>266</YPos><SelStart>8563</SelStart><SelEnd>8563</SelEnd></Tab><ActiveTab>2</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\src\motor_step.c</Filename><XPos>0</XPos><YPos>16</YPos><SelStart>871</SelStart><SelEnd>871</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\src\hw_config.c</Filename><XPos>0</XPos><YPos>160</YPos><SelStart>5831</SelStart><SelEnd>5831</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\src\motor_step.h</Filename><XPos>0</XPos><YPos>26</YPos><SelStart>770</SelStart><SelEnd>770</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\src\motor_step.c</Filename><XPos>0</XPos><YPos>129</YPos><SelStart>5213</SelStart><SelEnd>5213</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\src\usart.c</Filename><XPos>0</XPos><YPos>186</YPos><SelStart>4915</SelStart><SelEnd>4915</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\src\timer.c</Filename><XPos>0</XPos><YPos>79</YPos><SelStart>2279</SelStart><SelEnd>2279</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\src\i2c_test.c</Filename><XPos>0</XPos><YPos>16</YPos><SelStart>622</SelStart><SelEnd>622</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\src\sensor.c</Filename><XPos>0</XPos><YPos>86</YPos><SelStart>1218</SelStart><SelEnd>1218</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\src\main.c</Filename><XPos>0</XPos><YPos>263</YPos><SelStart>8338</SelStart><SelEnd>8338</SelEnd></Tab><ActiveTab>5</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\lib\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_adc.c</Filename><XPos>0</XPos><YPos>1192</YPos><SelStart>42730</SelStart><SelEnd>42730</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\lib\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_i2c.c</Filename><XPos>0</XPos><YPos>968</YPos><SelStart>32120</SelStart><SelEnd>32120</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\src\hw_config.c</Filename><XPos>0</XPos><YPos>227</YPos><SelStart>8425</SelStart><SelEnd>8425</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-02c32de8><key>iaridepm.enu1</key></Toolbar-02c32de8></Sizes></Row0><Row1><Sizes/></Row1></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>628</Bottom><Right>499</Right><x>-2</x><y>-2</y><xscreen>113</xscreen><yscreen>154</yscreen><sizeHorzCX>63555</sizeHorzCX><sizeHorzCY>148362</sizeHorzCY><sizeVertCX>281777</sizeVertCX><sizeVertCY>606936</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>365</Bottom><Right>1780</Right><x>-2</x><y>-2</y><xscreen>1782</xscreen><yscreen>367</yscreen><sizeHorzCX>1002250</sizeHorzCX><sizeHorzCY>353565</sizeHorzCY><sizeVertCX>63555</sizeVertCX><sizeVertCY>148362</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-02d12d88><key>iaridepm.enu1</key></Toolbar-02d12d88></Sizes></Row0><Row1><Sizes/></Row1></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>628</Bottom><Right>124</Right><x>-2</x><y>-2</y><xscreen>28</xscreen><yscreen>51</yscreen><sizeHorzCX>19152</sizeHorzCX><sizeHorzCY>59441</sizeHorzCY><sizeVertCX>86183</sizeVertCX><sizeVertCY>734266</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>185</Bottom><Right>1464</Right><x>-2</x><y>-2</y><xscreen>1466</xscreen><yscreen>187</yscreen><sizeHorzCX>1002736</sizeHorzCX><sizeHorzCY>217949</sizeHorzCY><sizeVertCX>19152</sizeVertCX><sizeVertCY>59441</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

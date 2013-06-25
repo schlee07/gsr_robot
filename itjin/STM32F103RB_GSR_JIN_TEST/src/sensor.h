@@ -12,8 +12,10 @@ typedef enum
     SENSOR_MAX   
 }robot_sensor_type;
 
-extern u16 robot_read_sensor(robot_sensor_type sensor);
+extern vu16 ADC1ConvertedValue[3];
 
+extern u16 robot_read_sensor(robot_sensor_type sensor);
+extern void test_func_adc_conv(void);
 
 #endif /* SENSOR_PRESENT */
 
